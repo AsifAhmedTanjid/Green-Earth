@@ -94,7 +94,6 @@ displayTreeModal=(plant)=>{
   console.log(plant);
   const modalContainer =document.getElementById("model-container");
   modalContainer.innerHTML=`            
-          
               <figure class="p-4 pb-0 -mb-2">
                 <img
                   src="${plant.image}"
@@ -103,20 +102,20 @@ displayTreeModal=(plant)=>{
                 />
               </figure>
               <div class="card-body">
-                <h2 class="card-title font-semibold text-xl mb-1 hover:cursor-pointer">
-                  ${plant.name}
+                <h2 class="card-title font-normal text-xl mb-1 hover:cursor-pointer">
+                 <b>Name:</b> ${plant.name}
                 </h2>
-                <p class="text-base text-[#71717A]/80 text-justify mb-1">
-                 ${plant.description}
+                <p class="text-base text-Black text-justify mb-1">
+                 <b>Description</b> : ${plant.description}
                 </p>
-                <div class="flex justify-between font-semibold text-base">
+                
                   <div
-                    class="badge text-[#15803D] text-sm font-medium rounded-full bg-[#DCFCE7] py-1 px-3 mb-2"
+                    class="py-1 mb-2 text-base text-Black"
                   >
-                    ${plant.category}
+                    <b>Category :</b> ${plant.category}
                   </div>
-                  <div>৳ <span>${plant.price}</span></div>
-                </div>
+                  <div class="py-1 text-base text-Black"><b>Price :</b> ৳ <span>${plant.price}</span></div>
+                
               </div>
             `
   document.getElementById("my_modal_5").showModal();
