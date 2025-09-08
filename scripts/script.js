@@ -14,7 +14,7 @@ displayCategories=(categories)=>{
     for(let category of categories){
         // console.log(category);
         const btnDiv = document.createElement('div');
-        btnDiv.innerHTML=`<button class="w-full text-left py-1">${category.category_name}</button>`;
+        btnDiv.innerHTML=`<button class="w-full text-center lg:text-left py-1">${category.category_name}</button>`;
         categoryContainer.appendChild(btnDiv);
         
     }
