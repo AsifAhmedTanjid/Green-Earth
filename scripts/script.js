@@ -36,7 +36,7 @@ const loadCard = async()=>{
 displayCard = (cards) =>{
     const cardContainer =document.getElementById('card-container');
     for(let card of cards){
-        console.log(card);
+        // console.log(card);
         
         const cardDiv =document.createElement("div");
         cardDiv.innerHTML=`            <!-- card-1  -->
@@ -49,7 +49,7 @@ displayCard = (cards) =>{
                 />
               </figure>
               <div class="card-body">
-                <h2 class="card-title font-semibold text-sm mb-1">
+                <h2 class="card-title font-semibold text-sm mb-1 hover:cursor-pointer" onclick="loadTreeModal(${card.id})">
                   ${card.name}
                 </h2>
                 <p class="text-xs text-[#71717A]/80 text-justify mb-1">
@@ -76,4 +76,53 @@ displayCard = (cards) =>{
     }
 
 }
+
+//modal
+const loadTreeModal=async(id)=>
+
+{
+  const url =`https://openapi.programming-hero.com/api/plant/${id}`;
+  // console.log(url);
+  const res = await fetch(url);
+  const data = await res.json();
+  displayTreeModal(data.plants);
+  
+  
+}
+
+displayTreeModal=(plant)=>{
+  console.log(plant);
+  const modalContainer =document.getElementById("model-container");
+  modalContainer.innerHTML=`            
+          
+              <figure class="p-4 pb-0 -mb-2">
+                <img
+                  src="${plant.image}"
+                  alt="Product"
+                  class="rounded-xl h-[400px] w-[600px]"
+                />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title font-semibold text-xl mb-1 hover:cursor-pointer">
+                  ${plant.name}
+                </h2>
+                <p class="text-base text-[#71717A]/80 text-justify mb-1">
+                 ${plant.description}
+                </p>
+                <div class="flex justify-between font-semibold text-base">
+                  <div
+                    class="badge text-[#15803D] text-sm font-medium rounded-full bg-[#DCFCE7] py-1 px-3 mb-2"
+                  >
+                    ${plant.category}
+                  </div>
+                  <div>৳ <span>${plant.price}</span></div>
+                </div>
+              </div>
+            `
+  document.getElementById("my_modal_5").showModal();
+
+
+}
+
+
 loadCard();
