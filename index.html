@@ -12,6 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+    <!-- font awesome cdn  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- daisy ui cdn  -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -113,7 +115,7 @@
           <!-- category  -->
           <div id="catergory-container" class="w-full lg:w-1/6 ">
             <h2 class="font-semibold text-xl mb-4 text-center lg:text-left">Categories</h2>
-            <div><button class="w-full text-center lg:text-left py-1">All Trees</button></div>
+            <div><button class="w-full text-center lg:text-left py-1 mt-2  rounded-md pl-[10px] bg-[#15803D] text-white">All Trees</button></div>
           </div>
 
           <!-- cards  -->
@@ -334,7 +336,59 @@
 
           <!-- cart  -->
 
+          <div
+            class=" cart-container w-full lg:w-1/6 min-h-[100px] lg:min-h-[800px] bg-white rounded-2xl p-4"
+          >
+          <h2 class="font-semibold text-xl mb-4 text-center lg:text-left">Your Cart</h2>
+ 
+                <!-- cart item-1  -->
+          <div class="bg-[#F0FDF4] flex justify-between items-center px-3 py-2 mb-2">
+       
+            <div>      
+              <h3 class="font-semibold text-sm">Mango Tree</h1>
+              <p class="text-[#1F2937]/50">৳ <span class="tree-price">500</span> x <span class="tree-quantity">1</span></p>
+            </div>
+            <div>
+              <p class="delete-from-cart text-[#8C8C8C]">X</p>
+            </div>
 
+          </div>
+                <!-- cart item-2  -->
+          <div class="bg-[#F0FDF4] flex justify-between items-center px-3 py-2 mb-2">
+       
+            <div>      
+              <h3 class="font-semibold text-sm">Mango Tree</h1>
+              <p class="text-[#1F2937]/50">৳ <span class="tree-price">500</span> x <span class="tree-quantity">1</span></p>
+            </div>
+            <div>
+              <p class="delete-from-cart text-[#8C8C8C]">X</p>
+            </div>
+
+          </div>
+                <!-- cart item-3  -->
+          <div class="bg-[#F0FDF4] flex justify-between items-center px-3 py-2 mb-2">
+       
+            <div>      
+              <h3 class="font-semibold text-sm">Mango Tree</h1>
+              <p class="text-[#1F2937]/50">৳ <span class="tree-price">500</span> x <span class="tree-quantity">1</span></p>
+            </div>
+            <div>
+              <p class="delete-from-cart text-[#8C8C8C]">X</p>
+            </div>
+
+          </div>
+
+          <!-- <div> -->
+            <hr class="opacity-10">
+          <!-- </div> -->
+
+          <div class="flex justify-between mt-2 text-[#1F2937] font-medium">
+            <h3>Total:</h3>
+            <p>৳<span class="total-price">1000</span></p>
+          </div>
+
+        
+        </div>
 
 
 
