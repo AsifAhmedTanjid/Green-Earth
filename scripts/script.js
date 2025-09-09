@@ -61,7 +61,7 @@ const displayCard = (cards) => {
                 <h2 class="card-title font-semibold text-sm mb-1 hover:cursor-pointer" onclick="loadTreeModal(${card.id})">
                   ${card.name}
                 </h2>
-                <p class="text-xs text-[#71717A]/80 text-justify mb-1">
+                <p class="text-xs text-[#71717A]/80 text-justify min-h-12">
                  ${card.description}
                 </p>
                 <div class="flex justify-between font-semibold text-sm">
