@@ -1,4 +1,4 @@
-console.log("connected");
+// console.log("connected");
 
 let cart = [];
 let allPlants = [];
@@ -133,7 +133,7 @@ const displayCart = () => {
   if (cart.length === 0) {
     const emptyCartDiv = document.createElement("div");
     emptyCartDiv.innerHTML = `         <div class="flex flex-col justify-center items-center lg:mt-28">
-           <span class="text-green-600"><i class="fa-solid fa-cart-plus fa-5x"></i></span>
+           <span class="text-green-400"><i class="fa-solid fa-cart-plus fa-3x"></i></span>
           <h1 class="text-red-500"> Your cart is empty </h1>
           <h1 class="text-green-800"> Add some plant to the cart </h1>
          </div>`;
