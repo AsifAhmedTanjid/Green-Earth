@@ -1,45 +1,54 @@
-console.log('connected');
-
+console.log("connected");
 
 //load category
 
-loadCategory =()=>{
-    fetch("https://openapi.programming-hero.com/api/categories")
-    .then(res=> res.json())
-    .then(data=>displayCategories(data.categories))
-}
-displayCategories=(categories)=>{
-    const categoryContainer=document.getElementById("catergory-container");
-    // console.log(categoryContainer);
-    for(let category of categories){
-        // console.log(category);
-        const btnDiv = document.createElement('div');
-        btnDiv.innerHTML=`<button class="w-full text-center lg:text-left py-1 rounded-md pl-[10px] mt-2 hover:bg-green-300">${category.category_name}</button>`;
-        categoryContainer.appendChild(btnDiv);
-        
-    }
-}
-loadCategory();
+const loadCategory = () => {
+  fetch("https://openapi.programming-hero.com/api/categories")
+    .then((res) => res.json())
+    .then((data) => displayCategories(data.categories));
+};
+const displayCategories = (categories) => {
+  const categoryContainer = document.getElementById("catergory-container");
+  // console.log(categoryContainer);
+  for (let category of categories) {
+    console.log(category);
+    const btnDiv = document.createElement("div");
+    btnDiv.innerHTML = `<button onclick="loadCategoryWiseCard(${category.id})" class="w-full text-center lg:text-left py-1 rounded-md pl-[10px] mt-2 hover:bg-green-300">${category.category_name}</button>`;
+    categoryContainer.appendChild(btnDiv);
+  }
+};
 
 
+// load cards category wise 
+const loadCategoryWiseCard= async(id)=>{
+console.log(id);
+const url =`https://openapi.programming-hero.com/api/category/${id}`;
+const res = await fetch(url);
+const data= await res.json();
+// console.log(data.plants);
+displayCard(data.plants);
 
-// load cards 
-
-const loadCard = async()=>{
-    const url="https://openapi.programming-hero.com/api/plants";
-    const res =await fetch(url);
-    const data = await res.json();
-    displayCard(data.plants);
-    
 }
 
-displayCard = (cards) =>{
-    const cardContainer =document.getElementById('card-container');
-    for(let card of cards){
-        // console.log(card);
-        
-        const cardDiv =document.createElement("div");
-        cardDiv.innerHTML=`            <!-- card-1  -->
+
+
+// load cards
+
+const loadCard = async () => {
+  const url = "https://openapi.programming-hero.com/api/plants";
+  const res = await fetch(url);
+  const data = await res.json();
+  displayCard(data.plants);
+};
+
+const displayCard = (cards) => {
+  const cardContainer = document.getElementById("card-container");
+  cardContainer.innerHTML='';
+  for (let card of cards) {
+    // console.log(card);
+
+    const cardDiv = document.createElement("div");
+    cardDiv.innerHTML = `            <!-- card-1  -->
             <div class="card bg-base-100  shadow-sm">
               <figure class="p-4 pb-0 -mb-2">
                 <img
@@ -72,28 +81,23 @@ displayCard = (cards) =>{
                 </div>
               </div>
             </div>`;
-            cardContainer.appendChild(cardDiv);
-    }
-
-}
+    cardContainer.appendChild(cardDiv);
+  }
+};
 
 //modal
-const loadTreeModal=async(id)=>
-
-{
-  const url =`https://openapi.programming-hero.com/api/plant/${id}`;
+const loadTreeModal = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
   // console.log(url);
   const res = await fetch(url);
   const data = await res.json();
   displayTreeModal(data.plants);
-  
-  
-}
+};
 
-displayTreeModal=(plant)=>{
+const displayTreeModal = (plant) => {
   console.log(plant);
-  const modalContainer =document.getElementById("model-container");
-  modalContainer.innerHTML=`            
+  const modalContainer = document.getElementById("model-container");
+  modalContainer.innerHTML = `            
               <figure class="p-4 pb-0 -mb-2">
                 <img
                   src="${plant.image}"
@@ -117,11 +121,9 @@ displayTreeModal=(plant)=>{
                   <div class="py-1 text-base text-Black"><b>Price :</b> ৳ <span>${plant.price}</span></div>
                 
               </div>
-            `
+            `;
   document.getElementById("my_modal_5").showModal();
-
-
-}
-
+};
 
 loadCard();
+loadCategory();
