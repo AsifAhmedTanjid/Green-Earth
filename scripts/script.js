@@ -111,14 +111,16 @@ const addToCart = (id) => {
   const plant = allPlants.find((p) => p.id === id);
   const existing = cart.find((item) => item.id === id);
 
-  let totalPrice = 0;
-
   if (existing) {
     existing.quantity += 1;
   } else {
     cart.push({ ...plant, quantity: 1 });
   }
-  // console.log(plant);
+  displayCart();
+};
+
+const displayCart = () => {
+  let totalPrice = 0;
 
   const cartContainer = document.getElementById("cart-container");
   cartContainer.innerHTML = "";
@@ -137,7 +139,7 @@ const addToCart = (id) => {
                 <p class="text-[#1F2937]/50">৳ <span class="tree-price">${item.price}</span> x <span class="tree-quantity">${item.quantity}</span></p>
               </div>
               <div>
-                <p class="delete-from-cart text-[#8C8C8C]">X</p>
+                <p class="delete-from-cart text-[#8C8C8C] hover:cursor-pointer">X</p>
               </div>
   
             </div>
@@ -145,6 +147,13 @@ const addToCart = (id) => {
     
     
     `;
+    // remove from cart
+    cartItem
+      .querySelector(".delete-from-cart")
+      .addEventListener("click", () => {
+        cart = cart.filter((c) => c.id !== item.id);
+        displayCart();
+      });
     cartContainer.appendChild(cartItem);
     totalPrice = totalPrice + item.price * item.quantity;
   });
