@@ -143,7 +143,7 @@ const displayCart = () => {
 
     const totalPriceDiv = document.createElement("div");
     cart.forEach((item) => {
-      console.log(item);
+      // console.log(item);
       const cartItem = document.createElement("div");
 
       cartItem.innerHTML = `
@@ -199,7 +199,7 @@ const loadTreeModal = async (id) => {
 };
 
 const displayTreeModal = (plant) => {
-  console.log(plant);
+  // console.log(plant);
   const modalContainer = document.getElementById("model-container");
   modalContainer.innerHTML = `            
               <figure class="p-4 pb-0 -mb-2">
