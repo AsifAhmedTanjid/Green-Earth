@@ -13,7 +13,13 @@
       rel="stylesheet"
     />
     <!-- font awesome cdn  -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- daisy ui cdn  -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -111,18 +117,40 @@
         <h1 class="font-semibold text-3xl mb-10 text-center">
           Choose Your Trees
         </h1>
-        <div class="category-cart-parent flex flex-col items-center lg:items-start lg:flex-row gap-8">
+        <div
+          class="category-cart-parent flex flex-col items-center lg:items-start lg:flex-row gap-8"
+        >
           <!-- category  -->
-          <div class="w-full lg:w-1/6 ">
-            <h2 class="font-semibold text-xl mb-4 text-center lg:text-left">Categories</h2>
-            <div id="category-container">
+          <div class="w-full lg:w-1/6">
+            <h2 class="font-semibold text-xl mb-4 text-center lg:text-left">
+              Categories
+            </h2>
+            <div id="category-container" class="">
               <!-- <button id="allTreeBtn" onclick="loadCard(),loadCategory()" class="category-btn w-full text-center lg:text-left py-1 mt-2  rounded-md pl-[10px]  hover:bg-green-300 activeCategory">All Trees</button> -->
+            </div>
+            <div id="skeletonDiv" class="flex flex-col gap-4 hidden">
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+              <div class="skeleton h-8 w-full  pl-[10px]"></div>
+
+              
             </div>
           </div>
 
           <!-- cards  -->
-          <div id="card-container" class="w-4/6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<!-- 
+          <div
+            id="card-container"
+            class="w-4/6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+
+            <!-- 
             card-1 
             <div class="card bg-base-100  shadow-sm">
               <figure class="p-4 pb-0 -mb-2">
@@ -327,23 +355,23 @@
                 </div>
               </div>
             </div> -->
-
-
-
-
-
-
-
           </div>
+          <!-- //spinner -->
+           <div id="spinner" class="w-4/6 flex justify-center h-96 items-center hidden">
+            <span><span class="loading loading-bars loading-xl"></span>
+
+           </div>
 
           <!-- cart  -->
 
           <div
             class="w-full lg:w-1/6 min-h-[100px] lg:min-h-[480px] bg-white rounded-2xl p-4"
           >
-          <h2 class="font-semibold text-xl mb-4 text-center lg:text-left">Your Cart</h2>
-         <div id="cart-container">       
-                   <!-- cart item-1 
+            <h2 class="font-semibold text-xl mb-4 text-center lg:text-left">
+              Your Cart
+            </h2>
+            <div id="cart-container">
+              <!-- cart item-1 
           <div class="bg-[#F0FDF4] flex justify-between items-center px-3 py-2 mb-2">
        
             <div>      
@@ -379,14 +407,16 @@
             </div>
 
           </div> -->
-         <div class="flex flex-col justify-center items-center lg:mt-28">
-           <i class="fa-solid fa-cart-plus fa-5x"></i>
-          <h1 class="text-red-500"> Your cart is empty </h1>
-          <h1 class="text-green-800"> Add Some Plant to The Cart </h1>
-         </div>
-        </div>
+              <div class="flex flex-col justify-center items-center lg:mt-28">
+                <span class="text-green-600"
+                  ><i class="fa-solid fa-cart-plus fa-5x"></i
+                ></span>
+                <h1 class="text-red-500">Your cart is empty</h1>
+                <h1 class="text-green-800">Add some plant to the cart</h1>
+              </div>
+            </div>
 
-           <!-- <div>
+            <!-- <div>
             <hr class="opacity-10">
           </div> 
 
@@ -394,42 +424,26 @@
             <h3>Total:</h3>
             <p>৳<span class="total-price">1000</span></p>
           </div>  -->
-
-        
+          </div>
         </div>
-
-
-
-
-      </div>
       </section>
-      
 
-
-      <!-- Open the modal using ID.showModal() method -->
-<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <div id="model-container">
-
-    </div>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-
-
-
-
+      <!-- modal  -->
+      <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+          <div id="model-container"></div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
 
       <!-- about the campaign section starts here  -->
-      <section
-        class="about-campaign-section lg:w-[1100px] mx-auto px-2 pb-24"
-      >
+      <section class="about-campaign-section lg:w-[1100px] mx-auto px-2 pb-24">
         <div class="">
           <h1 class="font-semibold text-3xl mb-10 text-center">
             About the Campaign

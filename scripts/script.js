@@ -6,6 +6,7 @@ let allPlants = [];
 //load category
 
 const loadCategory = async () => {
+  manageSkeleton(true);
   // fetch("https://openapi.programming-hero.com/api/categories")
   //   .then((res) => res.json())
   //   .then((data) => displayCategories(data.categories));
@@ -29,6 +30,7 @@ const displayCategories = (categories) => {
     btnDiv.innerHTML = `<button id="categoryBtn-${category.id}" onclick="loadCategoryWiseCard(${category.id})" class="category-btn w-full text-center lg:text-left py-1 rounded-md pl-[10px] mt-2 hover:bg-green-300">${category.category_name}</button>`;
     categoryContainer.appendChild(btnDiv);
   }
+  manageSkeleton(false);
 };
 //remove active class from category
 const removeActiveCategory = () => {
@@ -54,15 +56,18 @@ const loadCategoryWiseCard = async (id) => {
 // load cards
 
 const loadCard = async () => {
+   manageSpinner(true);
   const url = "https://openapi.programming-hero.com/api/plants";
   const res = await fetch(url);
   const data = await res.json();
   allPlants = data.plants;
   // console.log(allPlants);
   displayCard(data.plants);
+  
 };
 
 const displayCard = (cards) => {
+ 
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   for (let card of cards) {
@@ -103,7 +108,10 @@ const displayCard = (cards) => {
               </div>
             </div>`;
     cardContainer.appendChild(cardDiv);
+  
   }
+   manageSpinner(false);
+ 
 };
 //cart
 
@@ -120,27 +128,25 @@ const addToCart = (id) => {
 };
 
 const displayCart = () => {
-
   const cartContainer = document.getElementById("cart-container");
   cartContainer.innerHTML = "";
-  if(cart.length===0){
+  if (cart.length === 0) {
     const emptyCartDiv = document.createElement("div");
-    emptyCartDiv.innerHTML=`         <div class="flex flex-col justify-center items-center lg:mt-28">
-           <i class="fa-solid fa-cart-plus fa-5x"></i>
+    emptyCartDiv.innerHTML = `         <div class="flex flex-col justify-center items-center lg:mt-28">
+           <span class="text-green-600"><i class="fa-solid fa-cart-plus fa-5x"></i></span>
           <h1 class="text-red-500"> Your cart is empty </h1>
-          <h1 class="text-green-800"> Add Some Plant to The Cart </h1>
+          <h1 class="text-green-800"> Add some plant to the cart </h1>
          </div>`;
-          cartContainer.appendChild(emptyCartDiv);
-  }
-  else{
-  let totalPrice = 0;
+    cartContainer.appendChild(emptyCartDiv);
+  } else {
+    let totalPrice = 0;
 
-  const totalPriceDiv = document.createElement("div");
-  cart.forEach((item) => {
-    console.log(item);
-    const cartItem = document.createElement("div");
+    const totalPriceDiv = document.createElement("div");
+    cart.forEach((item) => {
+      console.log(item);
+      const cartItem = document.createElement("div");
 
-    cartItem.innerHTML = `
+      cartItem.innerHTML = `
     
     
               <div class="bg-[#F0FDF4] flex justify-between items-center px-3 py-2 mb-2">
@@ -158,18 +164,18 @@ const displayCart = () => {
     
     
     `;
-    // remove from cart
-    cartItem
-      .querySelector(".delete-from-cart")
-      .addEventListener("click", () => {
-        cart = cart.filter((c) => c.id !== item.id);
-        displayCart();
-      });
-    cartContainer.appendChild(cartItem);
-    totalPrice = totalPrice + item.price * item.quantity;
-  });
+      // remove from cart
+      cartItem
+        .querySelector(".delete-from-cart")
+        .addEventListener("click", () => {
+          cart = cart.filter((c) => c.id !== item.id);
+          displayCart();
+        });
+      cartContainer.appendChild(cartItem);
+      totalPrice = totalPrice + item.price * item.quantity;
+    });
 
-  totalPriceDiv.innerHTML = `
+    totalPriceDiv.innerHTML = `
           <!-- <div> -->
             <hr class="opacity-10">
           <!-- </div> -->
@@ -179,8 +185,8 @@ const displayCart = () => {
             <p>৳ <span class="total-price">${totalPrice}</span></p>
           </div>`;
 
-  cartContainer.appendChild(totalPriceDiv);
-}
+    cartContainer.appendChild(totalPriceDiv);
+  }
 };
 
 //modal
@@ -221,6 +227,30 @@ const displayTreeModal = (plant) => {
               </div>
             `;
   document.getElementById("my_modal_5").showModal();
+};
+
+
+// spinner 
+const manageSpinner = (status) => {
+  if (status) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("card-container").classList.add("hidden");
+  } else {
+    document.getElementById("card-container").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+};
+
+
+// skeleton 
+const manageSkeleton = (status) => {
+  if (status) {
+    document.getElementById("skeletonDiv").classList.remove("hidden");
+    document.getElementById("category-container").classList.add("hidden");
+  } else {
+    document.getElementById("category-container").classList.remove("hidden");
+    document.getElementById("skeletonDiv").classList.add("hidden");
+  }
 };
 
 loadCard();
