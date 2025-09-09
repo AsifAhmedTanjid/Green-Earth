@@ -2,3 +2,7 @@
   font-family: "Inter", sans-serif;
 }
 
+.activeCategory{
+  background-color: #15803D;
+  color: white;
+}

@@ -6,31 +6,43 @@ const loadCategory = () => {
   fetch("https://openapi.programming-hero.com/api/categories")
     .then((res) => res.json())
     .then((data) => displayCategories(data.categories));
+  removeActiveCategory();
+  const clickedBtn = document.getElementById("allTreeBtn");
+  console.log(clickedBtn);
+  
+  clickedBtn.classList.add("activeCategory");
 };
 const displayCategories = (categories) => {
-  const categoryContainer = document.getElementById("catergory-container");
+  const categoryContainer = document.getElementById("category-container");
+  categoryContainer.innerHTML = `<button id="allTreeBtn" onclick="loadCard(),loadCategory()" class="category-btn w-full text-center lg:text-left py-1 mt-2  rounded-md pl-[10px]  hover:bg-green-300 activeCategory">All Trees</button>`;
   // console.log(categoryContainer);
   for (let category of categories) {
-    console.log(category);
+    // console.log(category);
     const btnDiv = document.createElement("div");
-    btnDiv.innerHTML = `<button onclick="loadCategoryWiseCard(${category.id})" class="w-full text-center lg:text-left py-1 rounded-md pl-[10px] mt-2 hover:bg-green-300">${category.category_name}</button>`;
+    btnDiv.innerHTML = `<button id="categoryBtn-${category.id}" onclick="loadCategoryWiseCard(${category.id})" class="category-btn w-full text-center lg:text-left py-1 rounded-md pl-[10px] mt-2 hover:bg-green-300">${category.category_name}</button>`;
     categoryContainer.appendChild(btnDiv);
   }
 };
+//remove active class from category
+const removeActiveCategory = () => {
+  const categoryBtn = document.querySelectorAll(".category-btn");
+  // console.log(categoryBtn);
+  categoryBtn.forEach((btn) => btn.classList.remove("activeCategory"));
+};
 
-
-// load cards category wise 
-const loadCategoryWiseCard= async(id)=>{
-console.log(id);
-const url =`https://openapi.programming-hero.com/api/category/${id}`;
-const res = await fetch(url);
-const data= await res.json();
-// console.log(data.plants);
-displayCard(data.plants);
-
-}
-
-
+// load cards category wise
+const loadCategoryWiseCard = async (id) => {
+  // console.log(id);
+  const url = `https://openapi.programming-hero.com/api/category/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  // console.log(data.plants);
+  displayCard(data.plants);
+  removeActiveCategory();
+  const clickedBtn = document.getElementById(`categoryBtn-${id}`);
+  clickedBtn.classList.add("activeCategory");
+  // console.log(clickedBtn);
+};
 
 // load cards
 
@@ -43,7 +55,7 @@ const loadCard = async () => {
 
 const displayCard = (cards) => {
   const cardContainer = document.getElementById("card-container");
-  cardContainer.innerHTML='';
+  cardContainer.innerHTML = "";
   for (let card of cards) {
     // console.log(card);
 
