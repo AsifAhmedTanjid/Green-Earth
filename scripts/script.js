@@ -120,10 +120,21 @@ const addToCart = (id) => {
 };
 
 const displayCart = () => {
-  let totalPrice = 0;
 
   const cartContainer = document.getElementById("cart-container");
   cartContainer.innerHTML = "";
+  if(cart.length===0){
+    const emptyCartDiv = document.createElement("div");
+    emptyCartDiv.innerHTML=`         <div class="flex flex-col justify-center items-center lg:mt-28">
+           <i class="fa-solid fa-cart-plus fa-5x"></i>
+          <h1 class="text-red-500"> Your cart is empty </h1>
+          <h1 class="text-green-800"> Add Some Plant to The Cart </h1>
+         </div>`;
+          cartContainer.appendChild(emptyCartDiv);
+  }
+  else{
+  let totalPrice = 0;
+
   const totalPriceDiv = document.createElement("div");
   cart.forEach((item) => {
     console.log(item);
@@ -169,6 +180,7 @@ const displayCart = () => {
           </div>`;
 
   cartContainer.appendChild(totalPriceDiv);
+}
 };
 
 //modal
