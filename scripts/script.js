@@ -2,13 +2,17 @@ console.log("connected");
 
 //load category
 
-const loadCategory = () => {
-  fetch("https://openapi.programming-hero.com/api/categories")
-    .then((res) => res.json())
-    .then((data) => displayCategories(data.categories));
+const loadCategory = async() => {
+  // fetch("https://openapi.programming-hero.com/api/categories")
+  //   .then((res) => res.json())
+  //   .then((data) => displayCategories(data.categories));
+  const url = `https://openapi.programming-hero.com/api/categories`;
+  const res = await fetch(url);
+  const data = await res.json();
+  displayCategories(data.categories);
   removeActiveCategory();
   const clickedBtn = document.getElementById("allTreeBtn");
-  console.log(clickedBtn);
+  // console.log(clickedBtn);
   
   clickedBtn.classList.add("activeCategory");
 };
